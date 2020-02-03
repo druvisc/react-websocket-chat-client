@@ -1,7 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react'
 import rootReducer, { initialState } from '../reducers'
-import { websocketMiddleware } from '../reducers/chatReducer'
-import useEnhancedReducer from '../hooks/useEnhancedReducer'
 
 const StoreStateContext = createContext(initialState)
 const StoreDispatchContext = createContext()
@@ -9,15 +7,9 @@ const StoreDispatchContext = createContext()
 const withThunks = (dispatch, state) => action =>
   typeof action === 'function' ? action(dispatch, state) : dispatch(action)
 
-// useEnhancedMiddleware is busted, atleast with multiple reducers.
-// const [state, _dispatch] = useReducer(rootReducer, initialState)
-// const dispatch = React.useCallback(withThunks(_dispatch, state), [])
-
 function StoreProvider({ children }) {
   const [state, _dispatch] = useReducer(rootReducer, initialState)
   const dispatch = React.useCallback(withThunks(_dispatch, state), [])
-
-  // const [state, dispatch] = useEnhancedReducer(rootReducer, initialState, [websocketMiddleware])
 
   return (
     <StoreStateContext.Provider value={state}>
