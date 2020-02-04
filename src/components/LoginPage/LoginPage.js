@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import { Redirect } from 'react-router-dom'
+import CONFIG from '../../config'
 import { connectAction } from '../../reducers/chatReducer'
 import { useStoreContext } from '../../context/Store'
 import { SOCKET_READY_STATE } from '../../const'
@@ -54,7 +55,7 @@ const LoginForm = ({ onLogin, onError }) => {
 
     setState({ loading: true })
     try {
-      const response = await fetch('http://localhost:8080/login', {
+      const response = await fetch(`${CONFIG.BASE_URL}/login`, {
         method: 'POST',
         body: JSON.stringify({ username })
       })

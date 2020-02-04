@@ -1,3 +1,4 @@
+import CONFIG from '../config'
 import { frozenObject } from '../utils'
 import { SOCKET_READY_STATE, CLOSE_CODE } from '../const'
 import { SOCKET, MESSAGE_TYPE, MESSAGE, STATE } from './types'
@@ -12,9 +13,7 @@ export const initialState = frozenObject({
 
 let ChatSocket
 export const connectAction = ({ username }) => (dispatch, state) => {
-  const scheme = document.location.protocol === 'https:' ? 'wss' : 'ws'
-  const port = 8080
-  const url = `${scheme}://${document.location.hostname}:${port}`
+  const url = `${CONFIG.WS_SCHEME}://${CONFIG.WS_HOSTNAME}:${CONFIG.WS_PORT}`
 
   if (ChatSocket) {
     ChatSocket.close(CLOSE_CODE.NORMAL_CLOSURE)
