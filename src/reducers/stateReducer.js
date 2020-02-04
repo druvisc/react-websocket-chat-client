@@ -16,6 +16,7 @@ export default function stateReducer(state = initialState, action) {
       return { ...initialState, error: action.payload.error }
     case STATE.SET_USERNAME:
       return { ...initialState, username: action.payload.username }
+    default:
+      return state
   }
-  return state
 }

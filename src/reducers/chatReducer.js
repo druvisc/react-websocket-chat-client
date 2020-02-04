@@ -148,8 +148,12 @@ export default function chatReducer(state = initialState, action) {
           //   return { ...state, warning: { message: data.payload.warning } }
           // case MESSAGE_TYPE.ERROR:
           //   return { ...state, error: { message: data.payload.error } }
+          default:
+            return state
         }
-      } catch (error) {}
+      } catch (error) {
+        return state
+      }
 
     default:
       return state
