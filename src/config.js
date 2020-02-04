@@ -5,17 +5,15 @@ const hostname = location.hostname
 const port = ''
 
 const wsScheme = protocol === 'https' ? 'wss' : 'ws'
-const wsHostname = hostname
 
 const CONFIG = {
   PROTOCOL: process.env.REACT_APP_PROTOCOL || protocol,
   HOSTNAME: process.env.REACT_APP_HOSTNAME || hostname,
   PORT: process.env.REACT_APP_PORT || port,
 
-  WS_SCHEME: process.env.REACT_APP_WS_SCHEME || wsScheme,
-  WS_HOSTNAME: process.env.REACT_APP_WS_HOSTNAME || wsHostname
+  WS_SCHEME: process.env.REACT_APP_WS_SCHEME || wsScheme
 }
-
+CONFIG.WS_HOSTNAME = process.env.REACT_APP_WS_HOSTNAME || CONFIG.HOSTNAME
 CONFIG.WS_PORT = process.env.REACT_APP_WS_PORT || CONFIG.PORT
 
 if (CONFIG.HOSTNAME[CONFIG.HOSTNAME.length - 1] === '/')
