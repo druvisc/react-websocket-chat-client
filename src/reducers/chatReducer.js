@@ -7,14 +7,14 @@ export const SOCKET = {
   OPEN: 'OPEN',
   ERROR: 'ERROR',
   CLOSE: 'CLOSE',
-  MESSAGE: 'MESSAGE',
+  MESSAGE: 'MESSAGE'
 }
 
 export const SOCKET_READY_STATE = {
   CONNECTING: 0,
   OPEN: 1,
   CLOSING: 2,
-  CLOSED: 3,
+  CLOSED: 3
 }
 
 export const CLOSE_CODE = {
@@ -38,16 +38,16 @@ export const CLOSE_CODE = {
 export const MESSAGE_TYPE = {
   ERROR: 'ERROR',
   WARNING: 'WARNING',
-  MESSAGE: 'MESSAGE',
+  MESSAGE: 'MESSAGE'
 }
 
 export const ERROR = {
   EXCEEDS_PAYLOAD: 'EXCEEDS_PAYLOAD',
-  INVALID_MESSAGE: 'INVALID_MESSAGE',
+  INVALID_MESSAGE: 'INVALID_MESSAGE'
 }
 
 export const WARNING = {
-  EXCEEDS_RATE_LIMIT: 'EXCEEDS_RATE_LIMIT',
+  EXCEEDS_RATE_LIMIT: 'EXCEEDS_RATE_LIMIT'
 }
 
 export const MESSAGE = {
@@ -56,7 +56,7 @@ export const MESSAGE = {
   USER_DISCONNECTED: 'USER_DISCONNECTED',
   USERS: 'USERS',
   USER_MESSAGE: 'USER_MESSAGE',
-  SERVER_MESSAGE: 'SERVER_MESSAGE',
+  SERVER_MESSAGE: 'SERVER_MESSAGE'
 }
 
 export const initialState = frozenObject({
@@ -64,7 +64,7 @@ export const initialState = frozenObject({
   error: null,
   close: null,
   users: [],
-  messages: [],
+  messages: []
 })
 
 let ChatSocket
@@ -84,7 +84,8 @@ export const connectAction = ({ username }) => (dispatch, state) => {
   ChatSocket.onopen = () => dispatch({ type: SOCKET.OPEN })
   ChatSocket.onerror = event => dispatch({ type: SOCKET.ERROR, payload: event })
   ChatSocket.onclose = event => dispatch({ type: SOCKET.CLOSE, payload: event })
-  ChatSocket.onmessage = event => dispatch({ type: SOCKET.MESSAGE, payload: event })
+  ChatSocket.onmessage = event =>
+    dispatch({ type: SOCKET.MESSAGE, payload: event })
 }
 
 export const disconnectAction = () => (dispatch, state) => {
@@ -95,48 +96,63 @@ export const disconnectAction = () => (dispatch, state) => {
 
 export const sendMessageAction = ({ message }) => (dispatch, state) => {
   if (ChatSocket.readyState !== SOCKET_READY_STATE.OPEN) {
-    throw new Error(`Socket is ${Object.keys(SOCKET)[ChatSocket.readyState]}. Can't send message.`)
+    throw new Error(
+      `Socket is ${
+        Object.keys(SOCKET)[ChatSocket.readyState]
+      }. Can't send message.`
+    )
   }
   ChatSocket.send(message)
 }
 
 export default function chatReducer(state = initialState, action) {
   switch (action.type) {
-    case SOCKET.CONNECT: return { ...initialState, readyState: SOCKET_READY_STATE.CONNECTING }
+    case SOCKET.CONNECT:
+      return { ...initialState, readyState: SOCKET_READY_STATE.CONNECTING }
 
-    case SOCKET.DISCONNECT: return { ...state, readyState: SOCKET_READY_STATE.CLOSED }
+    case SOCKET.DISCONNECT:
+      return { ...initialState }
 
-    case SOCKET.OPEN: return {
-      ...state,
-      readyState: ChatSocket.readyState,
-    }
-
-    case SOCKET.ERROR: return {
-      ...state,
-      readyState: ChatSocket.readyState,
-      error: action.payload,
-    }
-
-    case SOCKET.CLOSE: return {
-      ...state,
-      readyState: ChatSocket.readyState,
-      close: {
-        code: action.payload.code,
-        reason: action.payload.reason,
-        wasClean: action.payload.wasClean,
+    case SOCKET.OPEN:
+      return {
+        ...state,
+        readyState: ChatSocket.readyState
       }
-    }
+
+    case SOCKET.ERROR:
+      return {
+        ...state,
+        readyState: ChatSocket.readyState,
+        error: action.payload
+      }
+
+    case SOCKET.CLOSE:
+      return {
+        ...state,
+        readyState: ChatSocket.readyState,
+        close: {
+          code: action.payload.code,
+          reason: action.payload.reason,
+          wasClean: action.payload.wasClean
+        }
+      }
 
     case SOCKET.MESSAGE:
       try {
         const data = JSON.parse(action.payload.data)
         switch (data.type) {
-          case MESSAGE_TYPE.ERROR: return { ...state, error: { message: data.payload.error } }
-          case MESSAGE_TYPE.MESSAGE: return messageReducer(state, data.payload)
+          case MESSAGE_TYPE.MESSAGE:
+            return messageReducer(state, data.payload)
+          // Not in use, currently all messages are delivered through the MESSAGE_TYPE.MESSAGE.
+          // case MESSAGE_TYPE.WARNING:
+          //   return { ...state, warning: { message: data.payload.warning } }
+          // case MESSAGE_TYPE.ERROR:
+          //   return { ...state, error: { message: data.payload.error } }
         }
-      } catch (error) { }
+      } catch (error) {}
 
-    default: return state
+    default:
+      return state
   }
 }
 
@@ -144,9 +160,18 @@ function messageReducer(state, message) {
   switch (message.type) {
     case MESSAGE.USER_CONNECTED:
     case MESSAGE.USER_INACTIVE:
-    case MESSAGE.USER_DISCONNECTED: return { ...state, users: message.payload.users, messages: [...state.messages, message.payload.message] }
+    case MESSAGE.USER_DISCONNECTED:
+      return {
+        ...state,
+        users: message.payload.users,
+        messages: [...state.messages, message.payload.message]
+      }
     case MESSAGE.SERVER_MESSAGE:
     case MESSAGE.USER_MESSAGE:
-    default: return { ...state, messages: [...state.messages, message.payload.message] }
+    default:
+      return {
+        ...state,
+        messages: [...state.messages, message.payload.message]
+      }
   }
 }

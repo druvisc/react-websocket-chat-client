@@ -11,6 +11,11 @@
   flex-direction: row
   border: 1px solid $color-black
 
+.rightContainer
+  display: flex
+  flex-direction: column
+  flex-grow: 1
+
 .userList
   width: 200px
   height: calc(100vh - 1em * 2)
@@ -29,31 +34,8 @@
     li::before
       color: $color-green
 
-.input
-  width: 100%
-  height: 100px
-  border-top: 1px solid $color-black
-  form
-    height: 100%
-    display: flex
-    align-items: center
-    padding: 0 1em 0 1em
-    textarea
-      width: 20em
-      height: 5em
-      overflow: auto
-      border: 1px solid $color-black
-      resize: none
-    button
-      margin-left: 0.5em
-
 .userCurrent
   font-style: italic
-
-.rightContainer
-  display: flex
-  flex-direction: column
-  flex-grow: 1
 
 .messageList
   width: 100%
@@ -72,3 +54,21 @@
   font-weight: bolder
   color: $color-red
   margin: 1em 0 1em 0
+
+.input
+  width: 100%
+  height: 100px
+  border-top: 1px solid $color-black
+  form
+    height: 100%
+    display: flex
+    align-items: center
+    padding: 0 1em 0 1em
+    textarea
+      width: 20em
+      height: 5em
+      overflow: auto
+      border: 1px solid $color-black
+      resize: none
+    button
+      margin-left: 0.5em

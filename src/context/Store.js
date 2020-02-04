@@ -31,7 +31,9 @@ function useStoreStateContext() {
 function useStoreDispatchContext() {
   const context = useContext(StoreDispatchContext)
   if (context === undefined) {
-    throw new Error('useStoreDispatchContext must be used within a StoreProvider')
+    throw new Error(
+      'useStoreDispatchContext must be used within a StoreProvider'
+    )
   }
   return context
 }
@@ -41,4 +43,9 @@ const useStoreContext = () => [
   useStoreDispatchContext()
 ]
 
-export { StoreProvider, useStoreContext, useStoreStateContext, useStoreDispatchContext }
+export {
+  StoreProvider,
+  useStoreContext,
+  useStoreStateContext,
+  useStoreDispatchContext
+}
