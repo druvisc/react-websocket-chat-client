@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStoreStateContext } from '../../context/Store'
-import { SOCKET_READY_STATE, CLOSE_CODE } from '../../reducers/chatReducer'
+import { SOCKET_READY_STATE, CLOSE_CODE } from '../../const'
 import styles from './Status.module.sass'
 
 const CloseKeys = Object.keys(CLOSE_CODE)

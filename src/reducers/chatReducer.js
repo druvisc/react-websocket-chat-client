@@ -1,63 +1,6 @@
 import { frozenObject } from '../utils'
-import { STATE } from './stateReducer'
-
-export const SOCKET = {
-  CONNECT: 'CONNECT',
-  DISCONNECT: 'DISCONNECT',
-  OPEN: 'OPEN',
-  ERROR: 'ERROR',
-  CLOSE: 'CLOSE',
-  MESSAGE: 'MESSAGE'
-}
-
-export const SOCKET_READY_STATE = {
-  CONNECTING: 0,
-  OPEN: 1,
-  CLOSING: 2,
-  CLOSED: 3
-}
-
-export const CLOSE_CODE = {
-  NORMAL_CLOSURE: 1000,
-  GOING_AWAY: 1001,
-  PRTOCOL_ERROR: 1002,
-  UNSUPPORTED_DATA: 1003,
-  NO_STATUS_RECEIVED: 1005,
-  ABNORMAL_CLOSURE: 1006,
-  INVALID_FRAME: 1007,
-  POLICY_VIOLATION: 1008,
-  MESSAGE_TOO_BIG: 1009,
-  MISSING_EXTENSION: 1010,
-  INTERNAL_ERROR: 1011,
-  SERVICE_RESTART: 1012,
-  TRY_AGAIN_LATER: 1013,
-  BAD_GATEWAY: 1014,
-  BAD_TLS_HANDSHAKE: 1015
-}
-
-export const MESSAGE_TYPE = {
-  ERROR: 'ERROR',
-  WARNING: 'WARNING',
-  MESSAGE: 'MESSAGE'
-}
-
-export const ERROR = {
-  EXCEEDS_PAYLOAD: 'EXCEEDS_PAYLOAD',
-  INVALID_MESSAGE: 'INVALID_MESSAGE'
-}
-
-export const WARNING = {
-  EXCEEDS_RATE_LIMIT: 'EXCEEDS_RATE_LIMIT'
-}
-
-export const MESSAGE = {
-  USER_CONNECTED: 'USER_CONNECTED',
-  USER_INACTIVE: 'USER_INACTIVE',
-  USER_DISCONNECTED: 'USER_DISCONNECTED',
-  USERS: 'USERS',
-  USER_MESSAGE: 'USER_MESSAGE',
-  SERVER_MESSAGE: 'SERVER_MESSAGE'
-}
+import { SOCKET_READY_STATE, CLOSE_CODE } from '../const'
+import { SOCKET, MESSAGE_TYPE, MESSAGE, STATE } from './types'
 
 export const initialState = frozenObject({
   readyState: SOCKET_READY_STATE.CLOSED,
@@ -143,7 +86,7 @@ export default function chatReducer(state = initialState, action) {
         switch (data.type) {
           case MESSAGE_TYPE.MESSAGE:
             return messageReducer(state, data.payload)
-          // Not in use, currently all messages are delivered through the MESSAGE_TYPE.MESSAGE.
+          // Not in use, all messages are delivered through MESSAGE_TYPE.MESSAGE.
           // case MESSAGE_TYPE.WARNING:
           //   return { ...state, warning: { message: data.payload.warning } }
           // case MESSAGE_TYPE.ERROR:

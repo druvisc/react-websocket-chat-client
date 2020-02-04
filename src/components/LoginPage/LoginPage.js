@@ -1,9 +1,10 @@
 import React, { useReducer } from 'react'
 import { Redirect } from 'react-router-dom'
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
+import { connectAction } from '../../reducers/chatReducer'
 import { useStoreContext } from '../../context/Store'
-import { SOCKET_READY_STATE, connectAction } from '../../reducers/chatReducer'
-import { STATE } from '../../reducers/stateReducer'
+import { SOCKET_READY_STATE } from '../../const'
+import { STATE } from '../../reducers/types'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import styles from './LoginPage.module.sass'
 
 const MaxUsernameLength = 16

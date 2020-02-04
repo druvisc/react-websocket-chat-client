@@ -1,9 +1,5 @@
 import { frozenObject } from '../utils'
-
-export const STATE = {
-  SET_ERROR: 'SET_ERROR',
-  SET_USERNAME: 'SET_USERNAME'
-}
+import { STATE } from './types'
 
 export const initialState = frozenObject({
   error: null,

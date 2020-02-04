@@ -1,0 +1,40 @@
+/** stateReducer */
+export const STATE = {
+  SET_ERROR: 'SET_ERROR',
+  SET_USERNAME: 'SET_USERNAME'
+}
+/** stateReducer */
+
+/** chatReducer */
+export const SOCKET = {
+  CONNECT: 'CONNECT',
+  DISCONNECT: 'DISCONNECT',
+  OPEN: 'OPEN',
+  ERROR: 'ERROR',
+  CLOSE: 'CLOSE',
+  MESSAGE: 'MESSAGE'
+}
+
+export const MESSAGE_TYPE = {
+  ERROR: 'ERROR',
+  WARNING: 'WARNING',
+  MESSAGE: 'MESSAGE'
+}
+
+export const ERROR = {
+  EXCEEDS_PAYLOAD: 'EXCEEDS_PAYLOAD',
+  INVALID_MESSAGE: 'INVALID_MESSAGE'
+}
+
+export const WARNING = {
+  EXCEEDS_RATE_LIMIT: 'EXCEEDS_RATE_LIMIT'
+}
+
+export const MESSAGE = {
+  USER_CONNECTED: 'USER_CONNECTED',
+  USER_INACTIVE: 'USER_INACTIVE',
+  USER_DISCONNECTED: 'USER_DISCONNECTED',
+  USER_MESSAGE: 'USER_MESSAGE',
+  SERVER_MESSAGE: 'SERVER_MESSAGE'
+}
+/** chatReducer */
