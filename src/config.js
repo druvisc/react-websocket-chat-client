@@ -2,7 +2,7 @@ const location = (window && window.location) || {}
 
 const protocol = location.protocol && location.protocol.split(':')[0]
 const hostname = location.hostname
-const port = ''
+const port = location.port
 
 const wsScheme = protocol === 'https' ? 'wss' : 'ws'
 
