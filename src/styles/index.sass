@@ -1,6 +1,13 @@
 @import 'normalize'
 @import 'variables'
 
+@font-face
+  font-family: 'ubnt'
+  src: url('fonts/ubnt.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+  font-display: block
+
 body
   margin: 0
   color: $color
@@ -8,8 +15,9 @@ body
 
 body,
 input,
-textarea
-  font-family: Helvetica, sans-serif
+textarea,
+button
+  font-family: 'ubnt', sans-serif
   font-weight: 100
 
 ol, ul
