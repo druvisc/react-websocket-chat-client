@@ -77,16 +77,19 @@ const LoginForm = ({ onLogin, onError }) => {
       <fieldset disabled={state.loading}>
         {state.error && <div className={styles.error}>{state.error}</div>}
         <input
+          className={styles.input}
           autoFocus
           aria-label='Username'
           name='username'
           type='text'
-          placeholder='Enter a username'
+          placeholder='Username'
           maxLength={MaxUsernameLength}
           value={state.username}
           onChange={handleChange}
         />
-        <button type='submit'>Connect</button>
+        <div className={styles.centerText}>
+          <button type='submit'>Connect</button>
+        </div>
       </fieldset>
     </form>
   )

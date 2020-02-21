@@ -3,22 +3,35 @@
 
 @font-face
   font-family: 'ubnt'
-  src: url('fonts/ubnt.woff') format('woff')
+  font-display: swap
   font-weight: normal
   font-style: normal
-  font-display: block
+  src: url('fonts/ubnt.woff') format('woff')
 
 body
   margin: 0
   color: $color
-  background-color: $background-color
 
 body,
 input,
 textarea,
 button
-  font-family: 'ubnt', sans-serif
-  font-weight: 100
+  font-family: $font-family
+  font-weight: $font-weight
+  background-color: $background-color
+
+input,
+textarea,
+button
+  font-size: 14px
+  border: 0 
+  outline: none
+  box-shadow: none
+
+input
+  border-bottom: 1px solid $color-ui-blue
+  &::placeholder
+    text-align: center
 
 ol, ul
   margin: 0
@@ -29,3 +42,11 @@ fieldset
   margin: 0
   padding: 0
   border: 0
+
+button
+  cursor: pointer
+  border-radius: 5px
+  padding: 0.5rem 1.5rem
+  color: $color-white
+  font-weight: $font-weight-bold
+  background-color: $color-ui-blue
