@@ -24,18 +24,13 @@ const ChatPage = () => {
 
   return (
     <div className={styles.chat}>
-      <div>
-        <UserList active={isSocketOpen} users={users} username={username} />
-      </div>
-
-      <div className={styles.rightContainer}>
-        <MessageList messages={messages} />
-        <Input
-          disabled={!isSocketOpen}
-          sendMessage={sendMessage}
-          disconnect={disconnect}
-        />
-      </div>
+      <UserList active={isSocketOpen} users={users} username={username} />
+      <MessageList messages={messages} />
+      <Input
+        disabled={!isSocketOpen}
+        sendMessage={sendMessage}
+        disconnect={disconnect}
+      />
     </div>
   )
 }
@@ -137,8 +132,8 @@ const Input = ({ disabled, sendMessage, disconnect }) => {
   }
 
   return (
-    <fieldset disabled={disabled} className={styles.input}>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <fieldset disabled={disabled}>
         <textarea
           autoFocus
           ref={textareaEl}
@@ -151,10 +146,12 @@ const Input = ({ disabled, sendMessage, disconnect }) => {
           onChange={handleChange}
           onKeyPress={handleKeyPress}
         />
-        <button type='submit'>Send</button>
-        <button onClick={handleDisconnect}>Disconnect</button>
-      </form>
-    </fieldset>
+        <div>
+          <button type='submit'>Send</button>
+          <button onClick={handleDisconnect}>Disconnect</button>
+        </div>
+      </fieldset>
+    </form>
   )
 }
 

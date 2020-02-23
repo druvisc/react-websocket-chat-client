@@ -74,7 +74,7 @@ const LoginForm = ({ onLogin, onError }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <fieldset disabled={state.loading}>
+      <fieldset disabled={state.loading} className={styles.centerText}>
         {state.error && <div className={styles.error}>{state.error}</div>}
         <input
           className={styles.input}
