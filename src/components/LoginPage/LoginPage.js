@@ -8,8 +8,6 @@ import { STATE } from '../../reducers/types'
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import styles from './LoginPage.module.sass'
 
-const MaxUsernameLength = 16
-
 const LoginPage = () => {
   const [
     {
@@ -42,6 +40,7 @@ const LoginPage = () => {
   )
 }
 
+const MaxUsernameLength = 16
 const LoginForm = ({ onLogin, onError }) => {
   const [state, setState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
