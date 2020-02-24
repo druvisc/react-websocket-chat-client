@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react'
 import { Redirect } from 'react-router-dom'
-import CONFIG from '../../config'
 import { connectAction } from '../../reducers/chatReducer'
 import { useStoreContext } from '../../context/Store'
 import { SOCKET_READY_STATE } from '../../const'
 import { STATE } from '../../reducers/types'
+import CONFIG from '../../config'
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import styles from './LoginPage.module.sass'
 

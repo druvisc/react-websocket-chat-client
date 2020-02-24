@@ -1,6 +1,6 @@
 import CONFIG from '../config'
-import { frozenObject } from '../utils'
 import { SOCKET_READY_STATE, CLOSE_CODE } from '../const'
+import { frozenObject } from '../utils'
 import { SOCKET, MESSAGE_TYPE, MESSAGE, STATE } from './types'
 
 export const initialState = frozenObject({

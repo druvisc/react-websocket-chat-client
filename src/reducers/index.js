@@ -1,6 +1,6 @@
+import { frozenObject } from '../utils'
 import stateReducer, { initialState as stateInitial } from './stateReducer'
 import chatReducer, { initialState as chatInitial } from './chatReducer'
-import { frozenObject } from '../utils'
 
 export const initialState = frozenObject({
   state: stateInitial,

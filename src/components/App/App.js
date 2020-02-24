@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { StoreProvider } from '../../context/Store'
-import Status from '../Status/Status'
 import LoginPage from '../LoginPage/LoginPage'
 import ChatPage from '../ChatPage/ChatPage'
+import Status from '../Status/Status'
 import '../../styles/index.sass'
 
 function App() {

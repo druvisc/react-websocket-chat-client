@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
+import { sendMessageAction, disconnectAction } from '../../reducers/chatReducer'
 import { useStoreContext } from '../../context/Store'
 import { SOCKET_READY_STATE } from '../../const'
 import { MESSAGE } from '../../reducers/types'
-import { sendMessageAction, disconnectAction } from '../../reducers/chatReducer'
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import styles from './ChatPage.module.sass'
 
