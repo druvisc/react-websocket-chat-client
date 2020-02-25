@@ -85,11 +85,9 @@ export default function chatReducer(state = initialState, action) {
         switch (data.type) {
           case MESSAGE_TYPE.MESSAGE:
             return messageReducer(state, data.payload)
-          // Not in use, all messages are delivered through MESSAGE_TYPE.MESSAGE.
-          // case MESSAGE_TYPE.WARNING:
-          //   return { ...state, warning: { message: data.payload.warning } }
-          // case MESSAGE_TYPE.ERROR:
-          //   return { ...state, error: { message: data.payload.error } }
+          // Reference for future, all messages are delivered through MESSAGE_TYPE.MESSAGE.
+          case MESSAGE_TYPE.WARNING:
+          case MESSAGE_TYPE.ERROR:
           default:
             return state
         }
